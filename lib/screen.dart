@@ -57,30 +57,70 @@ class _MetricState extends State<Metric> {
     return Column(
       children: [
         const SizedBox(height: 30,),
-        const Text('Type in your height', style: TextStyle(fontSize: 20),),
-        const SizedBox(height: 10,),
-        Row(
-          children: const [
-            SizedBox( height: 30,
-                width: 20,
-                child: TextField()),
-            SizedBox(width: 20,),
-            Text('Centimetre')
-          ],
+        const Text('Type in your height', style: TextStyle(fontSize: 30),),
+        const SizedBox(height: 30,),
+        Padding(
+          padding: const EdgeInsets.only(left: 90.0),
+          child: Row(
+            children:  [
+              const SizedBox( height: 30,
+                  width: 80,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      fillColor: Colors.white,
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.greenAccent)
+                      )
+                    ),
+                  ),
+              ),
+              const SizedBox(width: 20,),
+              Container(
+                color: Colors.amber,
+                  child: const Text('Centimeters'))
+            ],
+          ),
         ),
-        const SizedBox(height: 20,),
-        const Text('Type in your weight'),
-        Row(
-          children: const [
-            SizedBox( height: 30,
-                width: 20,
-                child: TextField()),
-            SizedBox(width: 20,),
-            Text('Kilograms'),
-          ],
+        const SizedBox(height: 80,),
+        const Text('Type in your weight', style: TextStyle(fontSize: 30),),
+        const SizedBox(height: 30,),
+        Padding(
+          padding: const EdgeInsets.only(left: 90.0),
+          child: Row(
+            children: [
+              const SizedBox( height: 30,
+                  width: 80,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        fillColor: Colors.white,
+                        filled: true,
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.greenAccent)
+                        )
+                    ),
+                  ),
+              ),
+              const SizedBox(width: 20,),
+              Container(
+                color: Colors.amber,
+                  child: const Text('Kilograms')),
+            ],
+          ),
         ),
-        const SizedBox(height: 20,),
-        ElevatedButton(onPressed: () {}, child: const Text('Calculate BMI'))
+        const SizedBox(height: 50,),
+        SizedBox(
+          height: 70,
+          width: 100,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.brown,
+              ),
+              onPressed: () {},
+              child: const Text('Calculate BMI')),
+        )
       ],
     );
   }
@@ -101,32 +141,70 @@ class _StandardState extends State<Standard> {
     return Column(
       children: [
         const SizedBox(height: 30,),
-        const Text('Type in your height'),
-        const SizedBox(height: 10,),
-        Row(
-          children:  const [
-            SizedBox(
-                height: 30,
-                width: 20,
-                child: TextField()),
-            SizedBox(width: 20,),
-            Text('Inches')
-          ],
+        const Text('Type in your height', style: TextStyle(fontSize: 30),),
+        const SizedBox(height: 30,),
+        Padding(
+          padding: const EdgeInsets.only(left: 90.0),
+          child: Row(
+            children:  [
+              const SizedBox( height: 30,
+                  width: 80,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        fillColor: Colors.white,
+                        filled: true,
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.greenAccent)
+                        )
+                    ),
+                  ),
+              ),
+              const SizedBox(width: 20,),
+              Container(
+                  color: Colors.amber,
+                  child: const Text('Inches'))
+            ],
+          ),
         ),
-        const SizedBox(height: 20,),
-        const Text('Type in your weight'),
-        Row(
-          children: const [
-            SizedBox(
-                height: 30,
-                width: 20,
-                child: TextField()),
-            SizedBox(width: 20,),
-            Text('Pounds'),
-          ],
+        const SizedBox(height: 80,),
+        const Text('Type in your weight', style: TextStyle(fontSize: 30),),
+        const SizedBox(height: 30,),
+        Padding(
+          padding: const EdgeInsets.only(left: 90.0),
+          child: Row(
+            children: [
+              const SizedBox( height: 30,
+                  width: 80,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        fillColor: Colors.white,
+                        filled: true,
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.greenAccent)
+                        )
+                    ),
+                  ),
+              ),
+              const SizedBox(width: 20,),
+              Container(
+                  color: Colors.amber,
+                  child: const Text('Pounds')),
+            ],
+          ),
         ),
-        const SizedBox(height: 20,),
-        ElevatedButton(onPressed: () {}, child: const Text('Calculate BMI'))
+        const SizedBox(height: 100,),
+        SizedBox(
+          height: 70,
+          width: 100,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.brown,
+              ),
+              onPressed: () {},
+              child: const Text('Calculate BMI')),
+        )
       ],
     );
   }
