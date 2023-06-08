@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -14,6 +15,9 @@ class _HomeState extends State<Home> {
 
   final List _pages = [Metric(), Standard()];
 
+  final TextEditingController inchesText = TextEditingController();
+  final TextEditingController poundsText = TextEditingController();
+
   _changeTab(int index) {
     setState(() {
       _selectedTab = index;
@@ -21,16 +25,19 @@ class _HomeState extends State<Home> {
   }
 
 
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-            backgroundColor: Colors.blue,
+            backgroundColor: const Color(0xff9CC4B2),
             body: _pages[_selectedTab],
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: const Color(0xffD5BBB1),
           currentIndex: _selectedTab,
           onTap: (index) => _changeTab(index),
-          selectedItemColor: Colors.red,
+          selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.horizontal_rule_rounded), label: "Metric"),
@@ -52,21 +59,42 @@ class Metric extends StatefulWidget {
 }
 
 class _MetricState extends State<Metric> {
+
+
+  double calculateMetricBmi(double kilograms, double metres) {
+    double bmi = kilograms / metres * metres;
+    return bmi;
+  }
+
+
+  final TextEditingController metreText = TextEditingController();
+
+  final TextEditingController kilogramsText = TextEditingController();
+
+  @override
+  void dispose() {
+    metreText.dispose();
+    kilogramsText.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 30,),
+        const SizedBox(height: 80,),
         const Text('Type in your height', style: TextStyle(fontSize: 30),),
         const SizedBox(height: 30,),
         Padding(
           padding: const EdgeInsets.only(left: 90.0),
           child: Row(
             children:  [
-              const SizedBox( height: 30,
+               SizedBox( height: 30,
                   width: 80,
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: metreText,
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       fillColor: Colors.white,
                       filled: true,
@@ -78,8 +106,8 @@ class _MetricState extends State<Metric> {
               ),
               const SizedBox(width: 20,),
               Container(
-                color: Colors.amber,
-                  child: const Text('Centimeters'))
+                color: const Color(0xffD5BBB1),
+                  child: const Text('Meters'))
             ],
           ),
         ),
@@ -90,10 +118,11 @@ class _MetricState extends State<Metric> {
           padding: const EdgeInsets.only(left: 90.0),
           child: Row(
             children: [
-              const SizedBox( height: 30,
+               SizedBox( height: 30,
                   width: 80,
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: kilogramsText,
+                    decoration: const InputDecoration(
                         border: InputBorder.none,
                         fillColor: Colors.white,
                         filled: true,
@@ -105,7 +134,7 @@ class _MetricState extends State<Metric> {
               ),
               const SizedBox(width: 20,),
               Container(
-                color: Colors.amber,
+                color: const Color(0xffD5BBB1),
                   child: const Text('Kilograms')),
             ],
           ),
@@ -116,9 +145,15 @@ class _MetricState extends State<Metric> {
           width: 100,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.brown,
+                backgroundColor: const Color(0xff393D3F),
               ),
-              onPressed: () {},
+              onPressed: () {
+                String text = metreText.text;
+                String textK = kilogramsText.text;
+                double metre = double.parse(text);
+                double kilogram = double.parse(textK);
+                print(calculateMetricBmi(kilogram, metre));
+                },
               child: const Text('Calculate BMI')),
         )
       ],
@@ -136,21 +171,40 @@ class Standard extends StatefulWidget {
 }
 
 class _StandardState extends State<Standard> {
+
+  final TextEditingController inchesText = TextEditingController();
+
+  final TextEditingController poundsText = TextEditingController();
+
+
+  double calculateStandardBmi(double pounds, double inches) {
+    double bmi = pounds * 703 / inches * inches;
+    return bmi;
+  }
+
+  @override
+  void dispose() {
+    inchesText.dispose();
+    poundsText.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 30,),
+        const SizedBox(height: 80,),
         const Text('Type in your height', style: TextStyle(fontSize: 30),),
         const SizedBox(height: 30,),
         Padding(
           padding: const EdgeInsets.only(left: 90.0),
           child: Row(
             children:  [
-              const SizedBox( height: 30,
+              SizedBox( height: 30,
                   width: 80,
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: inchesText,
+                    decoration: const InputDecoration(
                         border: InputBorder.none,
                         fillColor: Colors.white,
                         filled: true,
@@ -162,7 +216,7 @@ class _StandardState extends State<Standard> {
               ),
               const SizedBox(width: 20,),
               Container(
-                  color: Colors.amber,
+                  color: const Color(0xffD5BBB1),
                   child: const Text('Inches'))
             ],
           ),
@@ -174,10 +228,11 @@ class _StandardState extends State<Standard> {
           padding: const EdgeInsets.only(left: 90.0),
           child: Row(
             children: [
-              const SizedBox( height: 30,
+               SizedBox( height: 30,
                   width: 80,
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: poundsText,
+                    decoration: const InputDecoration(
                         border: InputBorder.none,
                         fillColor: Colors.white,
                         filled: true,
@@ -189,25 +244,38 @@ class _StandardState extends State<Standard> {
               ),
               const SizedBox(width: 20,),
               Container(
-                  color: Colors.amber,
+                  color: const Color(0xffD5BBB1),
                   child: const Text('Pounds')),
             ],
           ),
         ),
-        const SizedBox(height: 100,),
+        const SizedBox(height: 50,),
         SizedBox(
           height: 70,
           width: 100,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.brown,
+                backgroundColor: const Color(0xff393D3F),
               ),
-              onPressed: () {},
+              onPressed: () {
+                String text = inchesText.text;
+                String textK = poundsText.text;
+                double inches = double.parse(text);
+                double pounds = double.parse(textK);
+                print(calculateStandardBmi(pounds, inches));
+
+              },
               child: const Text('Calculate BMI')),
         )
       ],
     );
   }
+}
+
+
+
+class BmiLogic {
+
 }
 
 
